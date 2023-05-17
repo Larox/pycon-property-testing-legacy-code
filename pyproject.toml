@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "property-testing"
+version = "0.1.0"
+description = ""
+authors = ["Sebas Arias <sebasarias95@gmail.com>"]
+readme = "README.md"
+packages = [{include = "property_testing"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+hypothesis = "^6.75.3"
+pytest = "^7.3.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
