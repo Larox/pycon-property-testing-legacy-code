@@ -10,6 +10,8 @@ packages = [{include = "property_testing"}]
 python = "^3.11"
 hypothesis = "^6.75.3"
 pytest = "^7.3.1"
+cryptography = "^40.0.2"
+python-dotenv = "^1.0.0"
 
 
 [build-system]
