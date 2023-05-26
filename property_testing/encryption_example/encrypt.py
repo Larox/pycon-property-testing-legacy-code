@@ -17,7 +17,3 @@ def encrypt_string(text: str) -> bytes:
 def decrypt_string(encrypted_text: bytes) -> str:
     text = f.decrypt(encrypted_text)
     return str(text, "ascii")
-
-
-# def encrypt_list_tokens(text: str, times: int = 5) -> list[bytes]:
-#     return [encrypt_string(text) for _ in range(times)]
