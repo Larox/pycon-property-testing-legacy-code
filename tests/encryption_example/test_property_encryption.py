@@ -1,5 +1,6 @@
 import re
 import string
+import unittest
 
 import pytest
 from hypothesis import given
@@ -19,7 +20,7 @@ ascii_text = st.text(alphabet=st.characters(min_codepoint=0, max_codepoint=127))
 encrypted_text = ascii_text.map(lambda text: (text, encrypt_string(text)))
 
 
-class TestEncryption:
+class TestEncryption(unittest.TestCase):
     @given(non_ascii_text)
     def test_encrypt_decrypt_functions_raise_error_when_not_ascii_string(self, text):
         with pytest.raises(ValueError) as except_info:
