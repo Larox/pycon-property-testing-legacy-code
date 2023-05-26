@@ -10,7 +10,9 @@ f = Fernet(key)
 
 
 def encrypt_string(text: str) -> bytes:
-    bytes_text = bytes(text, "ascii")
+    if not text.isascii():
+        raise ValueError("Input must be an ASCII string")
+    bytes_text = text.encode("ascii")
     return f.encrypt(bytes_text)
 
 
