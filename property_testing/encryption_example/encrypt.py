@@ -1,21 +1,17 @@
-import os
-from dotenv import load_dotenv
 from cryptography.fernet import Fernet
 
-load_dotenv()
 
-key = os.getenv("ENCRYPT_KEY")
+class EncryptionHandler:
+    def __init__(self, key: str):
+        self.key = key
+        self.cipher = Fernet(key)
 
-f = Fernet(key)
+    def encrypt_string(self, text: str) -> bytes:
+        if not text.isascii():
+            raise ValueError("Input must be an ASCII string")
+        encoded_text = text.encode("ascii")
+        return self.cipher.encrypt(encoded_text)
 
-
-def encrypt_string(text: str) -> bytes:
-    if not text.isascii():
-        raise ValueError("Input must be an ASCII string")
-    bytes_text = text.encode("ascii")
-    return f.encrypt(bytes_text)
-
-
-def decrypt_string(encrypted_text: bytes) -> str:
-    text = f.decrypt(encrypted_text)
-    return str(text, "ascii")
+    def decrypt_string(self, encrypted_text: bytes) -> str:
+        decrypted_bytes = self.cipher.decrypt(encrypted_text)
+        return decrypted_bytes.decode("ascii")
