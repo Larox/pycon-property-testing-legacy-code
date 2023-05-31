@@ -12,7 +12,7 @@ from hypothesis import strategies as st
 from property_testing.encryption_example.encrypt import EncryptionHandler
 
 load_dotenv()
-key = os.getenv("ENCRYPT_KEY").encode()
+key = os.getenv("ENCRYPT_KEY")
 
 
 # [\u0000-\u007F] for ASCII characters, so this test beyond this chars
