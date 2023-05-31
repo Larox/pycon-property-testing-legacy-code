@@ -8,6 +8,8 @@ class EncryptionHandler:
         self.box = nacl.secret.SecretBox(key)
 
     def encrypt_string(self, text: str) -> bytes:
+        if not text.isascii():
+            raise ValueError("Input must be an ASCII string")
         encoded_text = text.encode("ascii")
         nonce = nacl.utils.random(nacl.secret.SecretBox.NONCE_SIZE)
         encrypted_bytes = self.box.encrypt(encoded_text, nonce)
